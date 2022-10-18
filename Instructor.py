@@ -13,6 +13,10 @@ class Instructor:
     def getNombre(self):
         return self.nombre
 
+    def setNombre(self, nuevoNombre):
+        self.nombre = nuevoNombre
+        return None
+
     def getContrato(self):
         return self.contrato
 

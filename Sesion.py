@@ -61,3 +61,13 @@ class Sesion:
     def setId_sesion(self, nuevoId_sesion):
         self.id_sesion = nuevoId_sesion
         return None
+
+    def mostrarDatos(self):
+        print("| Fecha: " + self.fecha +
+              "| Hora: " + self.hora +
+              "| Duracion: " + self.duracion +
+              "| Instructor: " + self.instructor +
+              "| Categoria: " + self.categoria +
+              "| ID: " + self.id_sesion
+              )
+        return None

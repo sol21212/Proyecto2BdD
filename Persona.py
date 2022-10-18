@@ -1,6 +1,7 @@
+from Sesion import *
 class Persona:
 
-    def __init__(self, nombre, edad, altura, calorieIntake, pesoInicial, pesoActual, plan, contrasena, pago):
+    def __init__(self, nombre, edad, altura, calorieIntake, pesoInicial, pesoActual, plan, contrasena, pago, id):
         self.nombre = nombre
         self.edad = edad
         self.altura = altura
@@ -11,12 +12,33 @@ class Persona:
         self.contrasena = contrasena
         self.pago = pago
         self.acceso = True
-
+        self.admin = False
+        sesion_zero = Sesion("", "", "", "", "", 0)
         self.registroPeso = [ pesoInicial]
-        self.registroSesiones = []
+        self.registroSesiones = [sesion_zero]
+        self.id = id
 
     def getNombre(self):
         return self.nombre
+
+    def getID(self):
+        return self.id
+    def setID(self, nuevoId):
+        self.id = nuevoId
+        return None
+
+    def getAcceso(self):
+        return self.acceso
+    def setAcceso(self, nuevoA):
+        self.acceso = nuevoA
+        return None
+
+    def getAdminStatus(self):
+        return self.admin
+
+    def setAdminStatus(self, newAdmin):
+        self.admin = newAdmin
+        return None
 
     def getAcceso(self):
         return self.acceso
@@ -79,7 +101,7 @@ class Persona:
 
     def agregarPesoSemanal(self, pesoNuevo):
         self.pesoActual = pesoNuevo
-        self.registro.append(pesoNuevo)
+        self.registroPeso.append(pesoNuevo)
         return None
 
     def agregarSesion(self, sesionNueva):
@@ -98,8 +120,22 @@ class Persona:
 
         return None
 
-    # def mostrarRegistroSesiones(self):
-    #     for i in self.registroSesiones:
-    #         print("Sesion No. " + i + "| Datos de la sesion: " + self.registroSesiones[i])
-    #
-    #     return None
+    def mostrarRegistroSesiones(self):
+        for i in len(self.registroSesiones):
+            sesionActual = self.registroSesiones[i]
+            fecha = sesionActual.getFecha()
+            hora = sesionActual.getHora()
+            duracion = sesionActual.getDuracion()
+            instructor = sesionActual.getInstructor()
+            categoria = sesionActual.getCategoria()
+            ID = sesionActual.getId_sesion()
+
+            print("Sesion No. " + i + "| Fecha: " + fecha +
+                                      "| Hora: " + hora +
+                                      "| Duracion: " + duracion +
+                                      "| Instructor: " + instructor +
+                                      "| Categoria: " + categoria +
+                                      "| ID: " + ID
+                  )
+
+        return None
