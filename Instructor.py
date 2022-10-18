@@ -38,3 +38,9 @@ class Instructor:
         self.metodoPago = nuevoMetodo
         return None
 
+    def imprimir(self):
+        print("Nombre: ", self.nombre)
+        print("Contrato: ", self.contrato)
+        print("Estado Cuenta: ", self.estadoCuenta)
+        print("Método Pago: ", self.metodoPago)
+        print("ID: ", self.ID)

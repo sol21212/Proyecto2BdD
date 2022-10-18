@@ -2,15 +2,17 @@ from Persona import *
 from Sesion import *
 from Instructor import *
 
+
 class Constructor:
 
     def __init__(self):
         self.entrenador_zero = Instructor(0, "Nombre", "contrato", "estadoCuenta", "metodoPago")
-        self.sesion_zero =Sesion("", "", "", "", "", 0)
-        self.usuario_zero = Persona("","","","","", "", "", "", "", id=0)
-        self.usuario_zero.admin = True
+        self.sesion_zero = Sesion("", "", "", "", "", 0)
+        self.usuario_zero = Persona("", "", "", "", "", "", "", contrasena="1",pago="", id=1)
+        self.usuario_uno = Persona("", "", "", "", "", "", "", contrasena="123", pago="", id=123)
+        self.usuario_zero.setAdminStatus(True)
         self.sesiones = [self.sesion_zero]
-        self.usuarios = [self.usuario_zero]
+        self.usuarios = [self.usuario_zero, self.usuario_uno]
         self.instructores = [self.sesion_zero]
 
     def menuInicial(self):
@@ -30,7 +32,6 @@ class Constructor:
                 valor_salida = True
             else:
                 print("Error. Intente de nuevo.")
-
 
         return None
 
@@ -124,6 +125,7 @@ class Constructor:
             x = int(input(""))
 
             if x == 0:
+                #Crear Usuario
                 nombre = input("Ingrese el nombre del usuario:  ")
                 edad = input("Ingrese la edad del usuario:  ")
                 altura = input("Ingrese la altura del usuario:  ")
@@ -136,26 +138,36 @@ class Constructor:
                 ultimoUsuario = self.usuarios[len(self.usuarios) - 1]
                 nuevoID = ultimoUsuario.id + 1
 
-                usuario = Persona(nombre,edad, altura,calorieIntake,pesoIncial, pesoActual, plan, contrasena, metodoPago, nuevoID)
+                usuario = Persona(nombre, edad, altura, calorieIntake, pesoIncial, pesoActual, plan, contrasena,
+                                  metodoPago, nuevoID)
                 self.usuarios.append(usuario)
+
+                self.imprimirUsuarios()
+
             elif x == 1:
+                #Agregar Instructor
                 nombre = input("Ingrese el nombre del instructor:  ")
                 contrato = input("Ingrese el contrato del instructor:  ")
                 estadoCuenta = input("Ingrese el estado de Cuenta del instructor:  ")
                 metodoPago = input("Ingrese el metodo de pago del instructor:  ")
                 nuevoID = len(self.instructores)
 
-                instructor = Instructor(nuevoID,nombre, contrato, estadoCuenta, metodoPago)
+                instructor = Instructor(nuevoID, nombre, contrato, estadoCuenta, metodoPago)
                 self.instructores.append(instructor)
+
+                self.imprimirInstructores()
             elif x == 2:
-                #Modificar Instructor
+                # Modificar Instructor
                 instructor = self.entrenador_zero
+                valor = 0
                 idInstructor = input("Por favor ingrese el ID Instructor que desea modificar:")
                 for l in range(len(self.instructores)):
                     instructor = self.instructores[l]
                     if l == idInstructor:
                         instructor = self.instructores[l]
-
+                        instructor.imprimir()
+                        self.instructores.pop(l)
+                        valor = l
 
                 print("Por favor ingrese el numero del aspecto que desea modificar:")
                 print("1. Nombre.")
@@ -165,26 +177,30 @@ class Constructor:
 
                 eleccion = int(input(""))
                 nuevoDato = input("Ingrese el nuevo dato a reemplazarlo: ")
-                if eleccion ==1:
+                if eleccion == 1:
                     instructor.setNombre(nuevoDato)
-                elif eleccion ==2:
+                elif eleccion == 2:
                     instructor.setContrato(nuevoDato)
                 elif eleccion == 3:
                     instructor.setEstadoCuenta(nuevoDato)
                 elif eleccion == 4:
                     instructor.cambioMetodoPago(nuevoDato)
 
+                self.instructores.insert(valor, instructor)
+                self.imprimirInstructores()
+
             elif x == 3:
+                #Dar de baja instructor
                 instructor = self.entrenador_zero
                 idInstructor = input("Por favor ingrese el ID Instructor que desea dar de baja:")
                 for l in range(len(self.instructores)):
-                    if self.instructores[l].getID == idInstructor:
+                    if l == idInstructor:
                         instructor = self.instructores[l]
                         self.instructores.pop(l)
-                        instructor.cambioMetodoPago(None)
-                        instructor.setContrato(None)
+                self.imprimirInstructores()
 
             elif x == 4:
+                #Agregar Sesion
                 fecha = input("Ingrese la fecha de la sesión:  ")
                 hora = input("Ingrese la hora de la sesión:  ")
                 duracion = input("Ingrese la duración de la sesión:  ")
@@ -195,14 +211,19 @@ class Constructor:
 
                 sesion = Sesion(fecha, hora, duracion, instructor, categoria, nuevoID)
                 self.sesiones.append(sesion)
+                self.imprimirSesiones()
 
             elif x == 5:
-                #Modificar Sesion
+                # Modificar Sesion
                 sesion = self.sesion_zero
                 idSesion = input("Por favor ingrese el ID de la Sesion que desea modificar:")
+                valor = 0
                 for l in range(len(self.sesiones)):
                     if self.sesiones[l].getId_sesion() == idSesion:
                         sesion = self.sesiones[l]
+                        self.sesiones.pop(l)
+                        valor = l
+
 
                 print("Por favor ingrese el numero del aspecto que desea modificar:")
                 print("1. Fecha.")
@@ -224,7 +245,11 @@ class Constructor:
                 elif eleccion == 5:
                     sesion.setCategoria(nuevoDato)
 
+                self.sesiones.insert(valor, sesion)
+                self.imprimirSesiones()
+
             elif x == 6:
+                #Dar de baja sesion
                 sesion = self.sesion_zero
                 idSesion = input("Por favor ingrese el ID de la Sesion que desea modificar:")
                 for l in range(len(self.sesiones)):
@@ -232,13 +257,19 @@ class Constructor:
                         sesion = self.sesiones[l]
                         self.sesiones.pop(l)
 
+                self.imprimirSesiones()
+
             elif x == 7:
                 # Modificar Usuario
                 usuario = self.usuario_zero
                 idUser = input("Por favor ingrese el ID del Usuario que desea modificar:")
+                valor = 0
                 for l in range(len(self.usuarios)):
                     if self.usuarios[l].getID() == idUser:
                         usuario = self.usuarios[l]
+                        self.usuarios.pop(l)
+                        valor = l
+
 
                 print("Por favor ingrese el numero del aspecto que desea modificar:")
                 print("1. Nombre.")
@@ -251,7 +282,6 @@ class Constructor:
                 print("8. Pago.")
                 print("9. Acceso.")
                 print("10. Admin Status.")
-
 
                 eleccion = int(input(""))
                 nuevoDato = input("Ingrese el nuevo dato a reemplazarlo: ")
@@ -276,16 +306,22 @@ class Constructor:
                 elif eleccion == 10:
                     usuario.setAdminStatus(nuevoDato)
 
+                self.usuarios.insert(valor, usuario)
+                self.imprimirUsuarios()
+
 
             elif x == 8:
+                #Dar de baja usuario
                 usuario = self.usuario_zero
                 idUser = input("Por favor ingrese el ID del Usuario que desea dar de baja:")
                 for l in range(len(self.usuarios)):
                     if self.usuarios[l].getID() == idUser:
                         usuario = self.usuarios[l]
                         usuario.finalizarSuscripcion()
+                        usuario.imprimir()
+
             elif x == 9:
-                #Modulo Estadisticas
+                # Modulo Estadisticas
                 print("Top 10 Sesiones que más usuarios tuvieron.")
                 print("Cantidad de sesiones y usuarios por cada categoría.")
                 print("El top 5 de los entrenadores que los usuarios prefieren. ")
@@ -295,7 +331,6 @@ class Constructor:
                 valor_salida = True
             else:
                 print("Error. Intente de nuevo.")
-
 
         return None
 
@@ -324,28 +359,41 @@ class Constructor:
         else:
             self.menuNormal(usuario)
 
-
     def inicioSesion(self):
         entrada = False
         usuario = self.usuario_zero
         valor = 0
         while not entrada:
-            idSearch = input("Ingrese el ID del usuario: ")
-            passwordSearch = input("Ingrese la contraseña del usuario: ")
-            usuario  = self.usuario_zero
+            idSearch = int(input("Ingrese el ID del usuario: "))
+            passwordSearch = str(input("Ingrese la contraseña del usuario: "))
+            usuario = self.usuario_zero
             for l in range(len(self.usuarios)):
                 usuario = self.usuarios[l]
                 if usuario.getID() == idSearch and usuario.getContrasena() == passwordSearch:
                     usuario = self.usuarios[l]
+
                     entrada = True
-
-            valor = valor +1
-
-            if valor == 5:
-                entrada = True
 
 
         if usuario.getAdminStatus() == True:
             self.menuAdmin(usuario)
         else:
             self.menuNormal(usuario)
+
+
+    def imprimirSesiones(self):
+
+        for i in self.sesiones:
+            print("---------------------------------")
+            i.imprimir()
+
+    def imprimirUsuarios(self):
+
+        for i in self.usuarios:
+            print("---------------------------------")
+            i.imprimir()
+
+    def imprimirInstructores(self):
+        for i in self.instructores:
+            print("---------------------------------")
+            i.imprimir()

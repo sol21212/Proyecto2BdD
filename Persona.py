@@ -119,6 +119,19 @@ class Persona:
             print("Registro No. ",i ,"| El peso fue de: " + self.registroPeso[i])
 
         return None
+    def imprimir(self):
+        print("Nombre: ",self.nombre)
+        print("Edad: ",self.edad)
+        print("Altura: ",self.altura)
+        print("Calorías: ",self.calorieIntake)
+        print("Peso Inicial: ",self.pesoInicial)
+        print("Peso Actual: ",self.pesoActual)
+        print("Plan: ",self.plan)
+        print("Contraseña: ",self.contrasena)
+        print("Pago: ",self.pago)
+        print("Acceso: ",self.acceso)
+        print("Admin: ",self.admin)
+        print("ID: ",self.id)
 
     def mostrarRegistroSesiones(self):
         for i in range(len(self.registroSesiones)):

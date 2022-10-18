@@ -71,3 +71,12 @@ class Sesion:
               "| ID: " , self.id_sesion
               )
         return None
+
+    def imprimir(self):
+
+        print("Fecha: ", self.fecha)
+        print("Hora: ", self.hora)
+        print("Duracion: ", self.duracion)
+        print("Instructor: ", self.instructor)
+        print("Categoria: ", self.categoria)
+        print("ID Sesion: ", self.id_sesion)
