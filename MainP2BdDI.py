@@ -1,5 +1,4 @@
 from Constructor import *
 
-cons = Constructor
-
+cons = Constructor()
 cons.menuInicial()

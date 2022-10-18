@@ -2,13 +2,13 @@ import psycopg2
 from psycopg2 import Error
 
 try:
-    conexion = psycopg2.connect(database = "", user = "", password = "", host = "", port = "")
+    conexion = psycopg2.connect(database = "", user = "", password = "", host = "")
     obtener = conexion.cursor()
     print("Ingresar ID del usuario de interés:\n")
     id_ingresado = input()
     
     print("Datos obtenidos")
-    obtener.execute(SELECT* FROM usuario WHERE id_usuario = id_ingresado)
+    obtener.execute("SELECT* FROM usuario WHERE id_usuario = id_ingresado")
     obtener.fetchall()
     for row in obtener:
         nombre = str(row[0])
@@ -24,18 +24,18 @@ try:
         pago = str(row[10])
         plan = str(row[11])
         
-    print("Nombre del usuario: ", {nombre})
-    print("edad: ", {edad})
-    print("direccion residencial: ", {direccion})
-    print("id del usuario: ", {id_obtenido})
-    print("altura en metros: ", {altura})
-    print("peso en libras: ", {peso_actual})
-    print("calorias quemadas diariamente: ", {calorias_diarias})
-    print("administrador: ", {administrador})
-    print("cuenta con suscripcion activa: ", {suscripcion_activa})
-    print("estado de cuenta: ", {estado_cuenta})
-    print("pago: ", {pago})
-    print("tipo de plan: ", {plan})
+    # print("Nombre del usuario: ", {nombre})
+    # print("edad: ", {edad})
+    # print("direccion residencial: ", {direccion})
+    # print("id del usuario: ", {id_obtenido})
+    # print("altura en metros: ", {altura})
+    # print("peso en libras: ", {peso_actual})
+    # print("calorias quemadas diariamente: ", {calorias_diarias})
+    # print("administrador: ", {administrador})
+    # print("cuenta con suscripcion activa: ", {suscripcion_activa})
+    # print("estado de cuenta: ", {estado_cuenta})
+    # print("pago: ", {pago})
+    # print("tipo de plan: ", {plan})
 
 except:
     print("Error en la conexion, por favor probar de nuevo")

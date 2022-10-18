@@ -5,11 +5,12 @@ from Instructor import *
 class Constructor:
 
     def __init__(self):
-        self.entrenador_zero = Instructor("ID", "Nombre", "contrato", "estadoCuenta", "metodoPago")
+        self.entrenador_zero = Instructor(0, "Nombre", "contrato", "estadoCuenta", "metodoPago")
         self.sesion_zero =Sesion("", "", "", "", "", 0)
-        self.usuario_zero = Persona("","","","","", "", "", "", "", "")
+        self.usuario_zero = Persona("","","","","", "", "", "", "", id=0)
+        self.usuario_zero.admin = True
         self.sesiones = [self.sesion_zero]
-        self.usuarios = []
+        self.usuarios = [self.usuario_zero]
         self.instructores = [self.sesion_zero]
 
     def menuInicial(self):
@@ -80,7 +81,7 @@ class Constructor:
             elif x == 4:
                 sesion = self.sesion_zero
                 idSesionBuscar = input("Ingrese el ID de la Sesion que desea ver: .")
-                for l in self.sesiones:
+                for l in range(len(self.sesiones)):
                     if idSesionBuscar == self.sesiones[l].getId_sesion:
                         sesion = self.sesiones[l]
 
@@ -95,6 +96,7 @@ class Constructor:
                 persona.mostrarRegistroPeso()
             elif x == 7:
                 persona.finalizarSuscripcion()
+                valor_salida = True
             elif x == 8:
                 valor_salida = True
             else:
@@ -141,8 +143,7 @@ class Constructor:
                 contrato = input("Ingrese el contrato del instructor:  ")
                 estadoCuenta = input("Ingrese el estado de Cuenta del instructor:  ")
                 metodoPago = input("Ingrese el metodo de pago del instructor:  ")
-                ultimoInstructor = self.instructores[len(self.instructores) - 1]
-                nuevoID = ultimoInstructor.id + 1
+                nuevoID = len(self.instructores)
 
                 instructor = Instructor(nuevoID,nombre, contrato, estadoCuenta, metodoPago)
                 self.instructores.append(instructor)
@@ -150,8 +151,9 @@ class Constructor:
                 #Modificar Instructor
                 instructor = self.entrenador_zero
                 idInstructor = input("Por favor ingrese el ID Instructor que desea modificar:")
-                for l in self.instructores:
-                    if self.instructores[l].getID == idInstructor:
+                for l in range(len(self.instructores)):
+                    instructor = self.instructores[l]
+                    if l == idInstructor:
                         instructor = self.instructores[l]
 
 
@@ -173,8 +175,9 @@ class Constructor:
                     instructor.cambioMetodoPago(nuevoDato)
 
             elif x == 3:
+                instructor = self.entrenador_zero
                 idInstructor = input("Por favor ingrese el ID Instructor que desea dar de baja:")
-                for l in self.instructores:
+                for l in range(len(self.instructores)):
                     if self.instructores[l].getID == idInstructor:
                         instructor = self.instructores[l]
                         self.instructores.pop(l)
@@ -197,7 +200,7 @@ class Constructor:
                 #Modificar Sesion
                 sesion = self.sesion_zero
                 idSesion = input("Por favor ingrese el ID de la Sesion que desea modificar:")
-                for l in self.sesiones:
+                for l in range(len(self.sesiones)):
                     if self.sesiones[l].getId_sesion() == idSesion:
                         sesion = self.sesiones[l]
 
@@ -224,7 +227,7 @@ class Constructor:
             elif x == 6:
                 sesion = self.sesion_zero
                 idSesion = input("Por favor ingrese el ID de la Sesion que desea modificar:")
-                for l in self.sesiones:
+                for l in range(len(self.sesiones)):
                     if self.sesiones[l].getId_sesion() == idSesion:
                         sesion = self.sesiones[l]
                         self.sesiones.pop(l)
@@ -233,7 +236,7 @@ class Constructor:
                 # Modificar Usuario
                 usuario = self.usuario_zero
                 idUser = input("Por favor ingrese el ID del Usuario que desea modificar:")
-                for l in self.usuarios:
+                for l in range(len(self.usuarios)):
                     if self.usuarios[l].getID() == idUser:
                         usuario = self.usuarios[l]
 
@@ -277,7 +280,7 @@ class Constructor:
             elif x == 8:
                 usuario = self.usuario_zero
                 idUser = input("Por favor ingrese el ID del Usuario que desea dar de baja:")
-                for l in self.usuarios:
+                for l in range(len(self.usuarios)):
                     if self.usuarios[l].getID() == idUser:
                         usuario = self.usuarios[l]
                         usuario.finalizarSuscripcion()
@@ -307,8 +310,8 @@ class Constructor:
         contrasena = input("Ingrese su contrasena:  ")
         plan = input("Ingrese su plan del usuario (ORO/DIAMANTE):  ")
         metodoPago = input("Ingrese el metodo de pago:  ")
-        ultimoUsuario = self.usuarios[len(self.usuarios) - 1]
-        nuevoID = ultimoUsuario.id + 1
+
+        nuevoID = len(self.usuarios)
 
         usuario = Persona(nombre, edad, altura, calorieIntake, pesoIncial, pesoActual, plan, contrasena, metodoPago,
                           nuevoID)
@@ -323,15 +326,26 @@ class Constructor:
 
 
     def inicioSesion(self):
-        idSearch = input("Ingrese el ID del usuario: ")
-        passwordSearch = input("Ingrese la contraseña del usuario: ")
-        usuario  = self.usuario_zero
-        for l in self.usuarios:
-            if self.usuarios[l].getID == idSearch and self.usuarios[l].getContrasena():
+        entrada = False
+        usuario = self.usuario_zero
+        valor = 0
+        while not entrada:
+            idSearch = input("Ingrese el ID del usuario: ")
+            passwordSearch = input("Ingrese la contraseña del usuario: ")
+            usuario  = self.usuario_zero
+            for l in range(len(self.usuarios)):
                 usuario = self.usuarios[l]
+                if usuario.getID() == idSearch and usuario.getContrasena() == passwordSearch:
+                    usuario = self.usuarios[l]
+                    entrada = True
+
+            valor = valor +1
+
+            if valor == 5:
+                entrada = True
 
 
-        if usuario.admin == True:
+        if usuario.getAdminStatus() == True:
             self.menuAdmin(usuario)
         else:
             self.menuNormal(usuario)

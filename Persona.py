@@ -115,13 +115,13 @@ class Persona:
         return None
 
     def mostrarRegistroPeso(self):
-        for i  in self.registroPeso:
-            print("Registro No. "+ i + "| El peso fue de: " + self.registroPeso[i])
+        for i  in range(len(self.registroPeso)):
+            print("Registro No. ",i ,"| El peso fue de: " + self.registroPeso[i])
 
         return None
 
     def mostrarRegistroSesiones(self):
-        for i in len(self.registroSesiones):
+        for i in range(len(self.registroSesiones)):
             sesionActual = self.registroSesiones[i]
             fecha = sesionActual.getFecha()
             hora = sesionActual.getHora()
@@ -130,12 +130,12 @@ class Persona:
             categoria = sesionActual.getCategoria()
             ID = sesionActual.getId_sesion()
 
-            print("Sesion No. " + i + "| Fecha: " + fecha +
-                                      "| Hora: " + hora +
-                                      "| Duracion: " + duracion +
-                                      "| Instructor: " + instructor +
-                                      "| Categoria: " + categoria +
-                                      "| ID: " + ID
+            print("| Fecha: ", fecha ,
+                                      "| Hora: " , hora ,
+                                      "| Duracion: " , duracion ,
+                                      "| Instructor: " , instructor ,
+                                      "| Categoria: " , categoria ,
+                                      "| ID: " , ID
                   )
 
         return None

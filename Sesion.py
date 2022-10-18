@@ -63,11 +63,11 @@ class Sesion:
         return None
 
     def mostrarDatos(self):
-        print("| Fecha: " + self.fecha +
-              "| Hora: " + self.hora +
-              "| Duracion: " + self.duracion +
-              "| Instructor: " + self.instructor +
-              "| Categoria: " + self.categoria +
-              "| ID: " + self.id_sesion
+        print("| Fecha: " , self.fecha ,
+              "| Hora: " , self.hora ,
+              "| Duracion: " , self.duracion ,
+              "| Instructor: " , self.instructor ,
+              "| Categoria: " , self.categoria ,
+              "| ID: " , self.id_sesion
               )
         return None
