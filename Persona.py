@@ -98,8 +98,8 @@ class Persona:
 
         return None
 
-    def mostrarRegistroSesiones(self):
-        for i in self.registroSesiones:
-            print("Sesion No. " + i + "| Datos de la sesion: " + self.registroSesiones[i])
-
-        return None
+    # def mostrarRegistroSesiones(self):
+    #     for i in self.registroSesiones:
+    #         print("Sesion No. " + i + "| Datos de la sesion: " + self.registroSesiones[i])
+    #
+    #     return None
