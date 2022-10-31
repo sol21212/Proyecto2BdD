@@ -17,6 +17,7 @@ class Persona:
         self.registroPeso = [ pesoInicial]
         self.registroSesiones = [sesion_zero]
         self.id = id
+        self.direccion = ""
 
     def getNombre(self):
         return self.nombre
@@ -112,6 +113,13 @@ class Persona:
         self.pago = None
         self.plan = None
         self.acceso = False
+        return None
+
+    def getDireccion(self):
+        return self.direccion
+
+    def setDireccion(self, nuevaDireccion):
+        self.direccion = nuevaDireccion
         return None
 
     def mostrarRegistroPeso(self):
