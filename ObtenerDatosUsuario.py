@@ -17,7 +17,7 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
 
-            print("Datos obtenidos de usuario")
+
             self.obtener.execute("SELECT * FROM usuario")
             personas = self.obtener.fetchall()
             for row in personas:
@@ -40,26 +40,29 @@ class ObtenerDatosUsuario():
                 usuario.setAdminStatus(administrador)
                 usuario.setAcceso(suscripcion_activa)
                 usuario.setDireccion(direccion)
-                self.jalar_registroPeso(usuario.registroPeso, id_obtenido)
+                usuario.registroPeso = self.jalar_registroPeso(usuario.registroPeso, id_obtenido)
+                usuario.iwatchSesiones = self.jalar_iwatchsesiones(usuario.iwatchSesiones, id_obtenido)
                 usuarios.append(usuario)
 
-                return usuarios
+            print("Datos obtenidos de usuario")
+            return usuarios
+
 
         except Exception as e:
             print(e)
 
 
 
+
     def agregarUsuario(self, p):
         try:
-
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
             valor = """INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
-                    VALUES({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})""".format(p.getNombre(), p.getEdad(), p.getDireccion(), p.getID(), p.getAltura(), p.pesoActual(), p.getCalorieIntake(), p.getAdminStatus(), p.getAdminStatus(), p.getAcceso(), p.getMetodoPago(), p.getPlan())
+                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(p.getNombre(), p.getEdad(), p.getDireccion(), p.getID(), p.getAltura(), p.getPesoActual(), p.getCalorieIntake(), p.getAdminStatus(), "Activo", p.getAcceso(), p.getMetodoPago(), p.getPlan())
 
-            print("Datos agregados a usuario")
             self.obtener.execute(valor)
+            self.conexion.commit()
 
         except Exception as e:
             print(e)
@@ -72,7 +75,7 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
 
-            print("Datos obtenidos de sesiones")
+
             self.obtener.execute("SELECT * FROM sesion")
             sesions = self.obtener.fetchall()
             for row in sesions:
@@ -86,10 +89,13 @@ class ObtenerDatosUsuario():
                 sesion = Sesion(fecha, hora, duracion, instructor, categoria, id_sesion)
                 sesiones.append(sesion)
 
-                return sesiones
+            print("Datos obtenidos de sesiones")
+            return sesiones
+
 
         except Exception as e:
             print(e)
+
 
     def agregarSesion(self, s):
         try:
@@ -97,10 +103,11 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
             valor = """INSERT INTO sesion(categoria, duracion, instructor, fecha, hora, id_sesion)
-                    VALUES({}, {}, {}, {}, {}, {})""".format(s.getCategoria(), s.getDuracion(), s.getInstructor(), s.getFecha(), s.getHora(), s.getId_sesion())
+                    VALUES('{}', '{}', '{}', '{}', '{}', '{}')""".format(s.getCategoria(), s.getDuracion(), s.getInstructor(), s.getFecha(), s.getHora(), s.getId_sesion())
 
             print("Datos agregados a sesion")
             self.obtener.execute(valor)
+            self.conexion.commit()
 
         except Exception as e:
             print(e)
@@ -112,7 +119,7 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
 
-            print("Datos obtenidos de sesiones")
+
             self.obtener.execute("SELECT * FROM entrenador")
             entrenadores = self.obtener.fetchall()
             for row in entrenadores:
@@ -123,9 +130,12 @@ class ObtenerDatosUsuario():
                 instructor = Instructor(id_entrenador, "Nombre", contrato_horas, "0", metodo_pago)
                 instructores.append(instructor)
 
-                return instructores
+            print("Datos obtenidos de instructores")
+            return instructores
+
 
         except Exception as e:
+
             print(e)
 
     def agregarInstructor(self, s):
@@ -133,11 +143,11 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
             valor = """INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-                    VALUES({}, {}, {})""".format(s.getID(), s.getContrato(), s.getMetodoPago())
+                    VALUES({}, {}, '{}')""".format(s.getID(), s.getContrato(), s.getMetodoPago())
 
             print("Datos agregados a instructores")
             self.obtener.execute(valor)
-
+            self.conexion.commit()
 
         except Exception as e:
             print(e)
@@ -149,7 +159,7 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
 
-            print("Datos obtenidos de sesiones")
+
             self.obtener.execute("SELECT * FROM registro_peso")
             registros = self.obtener.fetchall()
             for row in registros:
@@ -160,23 +170,27 @@ class ObtenerDatosUsuario():
                 if id_usuario == idUsuario:
                     registroSesiones.append(peso)
 
+            print("Datos obtenidos de registroPeso")
             return registroSesiones
 
         except Exception as e:
             print(e)
 
+
     def agregarRegistroPeso(self, peso, idUsuario):
         try:
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
+            fechass = str(self.fecha)
             valor = """INSERT INTO registro_peso(fecha, peso, id_usuario)
-                    VALUES({}, {}, {})""".format(self.fecha, peso, idUsuario)
-
-            print("Datos agregados a instructores")
+                    VALUES('{}', {}, {})""".format(fechass, peso, idUsuario)
             self.obtener.execute(valor)
+            self.conexion.commit()
+            print("Datos agregados a registro Peso")
 
         except Exception as e:
             print(e)
+
 
     def jalar_iwatchsesiones(self, sesiones, idUsuario):
 
@@ -184,8 +198,7 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
 
-            print("Datos obtenidos de sesiones")
-            self.obtener.execute("SELECT * FROM registro_peso")
+            self.obtener.execute("SELECT * FROM iwatch_sesiones2")
             registros = self.obtener.fetchall()
             for row in registros:
                 id_usuario =  str(row[0])
@@ -199,22 +212,24 @@ class ObtenerDatosUsuario():
                 if id_usuario == idUsuario:
                     sesion = Sesion_watch(id_sesion, id_usuario, ritmo_cardiaco, tipo_ejercicio, calorias, hora, fecha)
                     sesiones.append(sesion)
-
+            print("Datos obtenidos de iWatch Sesiones")
             return sesiones
 
         except Exception as e:
+
             print(e)
 
     def agregariWatch(self, r):
-        r = Sesion_watch()
+
         try:
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
-            valor = """INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-                    VALUES({}, {}, {}, {}, {}, {}, {})""".format(r.getIdUsuario(), r.getId_sesion(), r.getFecha(), r.getHora(), r.getRc(), r.getCalBurned(), r.getTipo_ejercicio())
+            valor = """INSERT INTO iwatch_sesiones2(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(r.getIdUsuario(), r.getId_sesion(), r.getFecha(), r.getHora(), r.getRc(), r.getCalBurned(), r.getTipo_ejercicio())
 
-            print("Datos agregados a instructores")
+            print("Datos agregados a iWatch Sesiones")
             self.obtener.execute(valor)
+            self.conexion.commit()
 
         except Exception as e:
             print(e)

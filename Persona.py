@@ -27,6 +27,7 @@ class Persona:
 
     def getID(self):
         return self.id
+
     def setID(self, nuevoId):
         self.id = nuevoId
         return None
