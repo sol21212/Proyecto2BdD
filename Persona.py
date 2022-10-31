@@ -1,4 +1,5 @@
 from Sesion import *
+from Sesion_watch import *
 class Persona:
 
     def __init__(self, nombre, edad, altura, calorieIntake, pesoInicial, pesoActual, plan, contrasena, pago, id):
@@ -14,10 +15,12 @@ class Persona:
         self.acceso = True
         self.admin = False
         sesion_zero = Sesion("", "", "", "", "", 0)
+        sesion_iwatch_zero = Sesion_watch(0,0,0,0,0,0,0)
         self.registroPeso = [ pesoInicial]
         self.registroSesiones = [sesion_zero]
         self.id = id
         self.direccion = ""
+        self.iwatchSesiones = [sesion_iwatch_zero]
 
     def getNombre(self):
         return self.nombre
@@ -109,6 +112,10 @@ class Persona:
         self.registroSesiones.append(sesionNueva)
         return None
 
+    def agregarSesioniWatch(self, sesionNueva):
+        self.iwatchSesiones.append(sesionNueva)
+        return None
+
     def finalizarSuscripcion(self):
         self.pago = None
         self.plan = None
@@ -160,3 +167,8 @@ class Persona:
                   )
 
         return None
+
+    def mostrarRegistroSesiones(self):
+        print(self.iwatchSesiones)
+        return None
+

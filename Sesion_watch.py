@@ -1,11 +1,15 @@
 class Sesion_watch:
     
-    def __init__(self, id_sesion, fc, tipo_ejercicio, calBurned):
+    def __init__(self, id_sesion, id_usuario, rc, tipo_ejercicio, calBurned, hora, fecha):
         self.id_sesion = id_sesion
-        self.fc = fc
+        self.rc = rc
+        self.id_usuario = id_usuario
         self.tipo_ejercicio = tipo_ejercicio
         self.calBurned = calBurned
-        
+        self.hora = hora
+        self.fecha = fecha
+
+
 #----------------------------------------------------------------------------------
         
     def getId_sesion(self):

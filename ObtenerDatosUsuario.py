@@ -1,5 +1,6 @@
 import psycopg2
 from Persona import *
+from datetime import date
 from Sesion import *
 from Instructor import *
 
@@ -8,6 +9,7 @@ class ObtenerDatosUsuario():
     def __init__(self):
         self.conexion = psycopg2.connect(host='localhost', database='proyecto2', user='postgres', password='123456', )
         self.obtener = self.conexion.cursor()
+        self.fecha = date.today()
 
     def jalar_usuarios(self, usuarios):
 
@@ -38,6 +40,7 @@ class ObtenerDatosUsuario():
                 usuario.setAdminStatus(administrador)
                 usuario.setAcceso(suscripcion_activa)
                 usuario.setDireccion(direccion)
+                self.jalar_registroPeso(usuario.registroPeso, id_obtenido)
                 usuarios.append(usuario)
 
                 return usuarios
@@ -45,9 +48,7 @@ class ObtenerDatosUsuario():
         except Exception as e:
             print(e)
 
-        finally:
-            print("Conexion desconectada.")
-            self.obtener.close()
+
 
     def agregarUsuario(self, p):
         try:
@@ -63,9 +64,7 @@ class ObtenerDatosUsuario():
         except Exception as e:
             print(e)
 
-        finally:
-            print("Conexion desconectada.")
-            self.obtener.close()
+
 
     def jalar_sesiones(self, sesiones):
 
@@ -92,13 +91,9 @@ class ObtenerDatosUsuario():
         except Exception as e:
             print(e)
 
-        finally:
-            print("Conexion desconectada.")
-            self.obtener.close()
-
     def agregarSesion(self, s):
         try:
-            s = Sesion()
+
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
             valor = """INSERT INTO sesion(categoria, duracion, instructor, fecha, hora, id_sesion)
@@ -110,6 +105,102 @@ class ObtenerDatosUsuario():
         except Exception as e:
             print(e)
 
-        finally:
-            print("Conexion desconectada.")
-            self.obtener.close()
+
+    def jalar_instructores(self, instructores):
+
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            print("Datos obtenidos de sesiones")
+            self.obtener.execute("SELECT * FROM entrenador")
+            entrenadores = self.obtener.fetchall()
+            for row in entrenadores:
+                id_entrenador =  str(row[0])
+                contrato_horas =  str(row[1])
+                metodo_pago =  str(row[2])
+
+                instructor = Instructor(id_entrenador, "Nombre", contrato_horas, "0", metodo_pago)
+                instructores.append(instructor)
+
+                return instructores
+
+        except Exception as e:
+            print(e)
+
+    def agregarInstructor(self, s):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+            valor = """INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
+                    VALUES({}, {}, {})""".format(s.getID(), s.getContrato(), s.getMetodoPago())
+
+            print("Datos agregados a instructores")
+            self.obtener.execute(valor)
+
+
+        except Exception as e:
+            print(e)
+
+
+    def jalar_registroPeso(self, registroSesiones, idUsuario):
+
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            print("Datos obtenidos de sesiones")
+            self.obtener.execute("SELECT * FROM registro_peso")
+            registros = self.obtener.fetchall()
+            for row in registros:
+                fecha =  str(row[0])
+                peso =  str(row[1])
+                id_usuario =  str(row[2])
+
+                if id_usuario == idUsuario:
+                    registroSesiones.append(peso)
+
+            return registroSesiones
+
+        except Exception as e:
+            print(e)
+
+    def agregarRegistroPeso(self, peso, idUsuario):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+            valor = """INSERT INTO registro_peso(fecha, peso, id_usuario)
+                    VALUES({}, {}, {})""".format(self.fecha, peso, idUsuario)
+
+            print("Datos agregados a instructores")
+            self.obtener.execute(valor)
+
+        except Exception as e:
+            print(e)
+
+    def jalar_iwatchsesiones(self, sesiones, idUsuario):
+
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            print("Datos obtenidos de sesiones")
+            self.obtener.execute("SELECT * FROM registro_peso")
+            registros = self.obtener.fetchall()
+            for row in registros:
+                id_usuario =  str(row[0])
+                id_sesion =  str(row[1])
+                fecha =  str(row[2])
+                hora = str(row[3])
+                ritmo_cardiaco = str(row[4])
+                calorias = str(row[5])
+                tipo_ejercicio = str(row[6])
+
+                if id_usuario == idUsuario:
+                    sesion = Sesion_watch(id_sesion, id_usuario, ritmo_cardiaco, tipo_ejercicio, calorias, hora, fecha)
+                    sesiones.append(sesion)
+
+            return sesiones
+
+        except Exception as e:
+            print(e)

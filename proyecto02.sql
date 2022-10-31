@@ -120,7 +120,7 @@ CREATE TABLE iwatch_sesiones(
     tipo_ejercicio VARCHAR(20)
 )
 
-INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
 VALUES('30317512', '30251150', '2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
