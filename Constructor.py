@@ -330,55 +330,47 @@ class Constructor:
                 self.fecha = date.today()
                 
                 print("Top 10 Sesiones que más usuarios tuvieron.\n")
-                try:
-                    self.obtener.execute("SELECT id_sesion FROM sesion LIMIT 10;")
-                    Top10 = self.obtener.fetchall()
-                except Exception as e1:
-                    print(e1)
+
+                self.obtener.execute("SELECT id_sesion FROM sesion LIMIT 10;")
+                Top10 = self.obtener.fetchall()
+
                 
                 print(Top10)
                 
                 print("---------------------------------")
                 
                 print("Cantidad de sesiones y usuarios por cada categoría.\n")
-                try:
-                    self.obtener.execute("SELECT count(id_usuarios), count(id_sesiones) FROM sesion INNER JOIN iwatch_sesiones GROUP BY categoria;")
-                    SyU = self.obtener.fetchall()
-                except Exception as e2:
-                    print(e2)
+
+                self.obtener.execute("SELECT count(id_usuarios), count(id_sesiones) FROM sesion INNER JOIN iwatch_sesiones GROUP BY categoria;")
+                SyU = self.obtener.fetchall()
+
                 
                 print(SyU)
                 
                 print("---------------------------------")
                 
                 print("El top 5 de los entrenadores que los usuarios prefieren.\n ")
-                try:
-                    self.obtener.execute("SELECT id_entrenador FROM entrenador LIMIT 5;")
-                    Top5 = self.obtener.fetchall()
-                except Exception as e3:
-                    print(e3)
-                    
+             
+                self.obtener.execute("SELECT id_entrenador FROM entrenador LIMIT 5;")
+                Top5 = self.obtener.fetchall()
+    
                 print(Top5)
                 
                 print("---------------------------------")
                 
                 print("La cantidad de cuentas diamante que se han creado en los últimos 6 meses.\n")
-                try:
-                    self.obtener.execute("SELECT plan FROM usuario WHERE plan = 'Premium';")
-                    Cuentas = self.obtener.fetchall()
-                except Exception as e4:
-                    print(e4)
+
+                self.obtener.execute("SELECT plan FROM usuario WHERE plan = 'Premium';")
+                Cuentas = self.obtener.fetchall()
                 
                 print(Cuentas)
                 
                 print("---------------------------------")
                 
                 print("¿Cuál es la hora pico donde el servicio es más utilizado?\n")
-                try:
-                    self.obtener.execute("SELECT hora FROM sesion, iwatch_sesiones LIMIT 1;")
-                    horaPico = self.obtener.fetchall()
-                except Exception as e5:
-                    print(e5)
+                
+                self.obtener.execute("SELECT hora FROM sesion, iwatch_sesiones LIMIT 1;")
+                horaPico = self.obtener.fetchall()
                 
                 print(horaPico)
                 
