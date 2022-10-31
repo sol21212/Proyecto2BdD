@@ -111,6 +111,8 @@ INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
 VALUES('92732177', '30', 'Efectivo')
 
 CREATE TABLE iwatch_sesiones(
+    id_usuario VARCHAR(20),
+    id_sesion VARCHAR(20),
     fecha DATE,
     hora TIME,
     ritmo_cardiaco VARCHAR(20),
@@ -119,34 +121,34 @@ CREATE TABLE iwatch_sesiones(
 )
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales')
+VALUES('30317512', '30251150', '2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/05/07', '8:30:00', '75 latidos p/minuto', '30', 'Flexiones')
+VALUES('87954218', '11298527', '2022/05/07', '8:30:00', '75 latidos p/minuto', '30', 'Flexiones')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/02/25', '9:00:00', '90 latidos p/minuto', '45', 'Abdominales')
+VALUES('93779985', '40372532', '2022/02/25', '9:00:00', '90 latidos p/minuto', '45', 'Abdominales')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/07/01', '10:30:00', '100 latidos p/minuto', '50', 'Bicicleta')
+VALUES('11779375', '27869710', '2022/07/01', '10:30:00', '100 latidos p/minuto', '50', 'Bicicleta')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/04/23', '11:00:00', '85 latidos p/minuto', '60', 'Pesas')
+VALUES('92656444', '18476991', '2022/04/23', '11:00:00', '85 latidos p/minuto', '60', 'Pesas')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/09/05', '12:30:00', '110 latidos p/minuto', '35', 'Plancha')
+VALUES('46033728', '11928176', '2022/09/05', '12:30:00', '110 latidos p/minuto', '35', 'Plancha')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/08/12', '10:00:00', '110 latidos p/minuto', '40', 'Plancha')
+VALUES('57453209', '17565569', '2022/08/12', '10:00:00', '110 latidos p/minuto', '40', 'Plancha')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/10/10', '12:00:00', '95 latidos p/minuto', '30', 'Sentadillas')
+VALUES('63178824', '77645853', '2022/10/10', '12:00:00', '95 latidos p/minuto', '30', 'Sentadillas')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/04/17', '9:45:00', '90 latidos p/minuto', '55', 'Pesas')
+VALUES('60423746', '93443740', '2022/04/17', '9:45:00', '90 latidos p/minuto', '55', 'Pesas')
 
 INSERT INTO iwatch_sesiones(fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-VALUES('2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta')
+VALUES('16203325', '29961993', '2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta')
 
 CREATE TABLE usuario(
     nombre VARCHAR(20),
