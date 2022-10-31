@@ -19,13 +19,25 @@ class Sesion_watch:
         self.id_sesion = nuevoId_sesion
         return None
 
+    def getIdSesion(self):
+        return self.id_sesion
+
+    def getIdUsuario(self):
+        return self.id_usuario
+
+    def getFecha(self):
+        return self.fecha
+
+    def getHora(self):
+        return self.hora
+
 #----------------------------------------------------------------------------------
     
-    def getFc(self):
-        return self.fc
+    def getRc(self):
+        return self.rc
     
-    def setFc(self, nuevaFc):
-        self.fc = nuevaFc
+    def setRc(self, nuevaRc):
+        self.rc = nuevaRc
         return None
     
 #----------------------------------------------------------------------------------

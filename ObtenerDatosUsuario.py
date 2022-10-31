@@ -204,3 +204,17 @@ class ObtenerDatosUsuario():
 
         except Exception as e:
             print(e)
+
+    def agregariWatch(self, r):
+        r = Sesion_watch()
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+            valor = """INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+                    VALUES({}, {}, {}, {}, {}, {}, {})""".format(r.getIdUsuario(), r.getId_sesion(), r.getFecha(), r.getHora(), r.getRc(), r.getCalBurned(), r.getTipo_ejercicio())
+
+            print("Datos agregados a instructores")
+            self.obtener.execute(valor)
+
+        except Exception as e:
+            print(e)
