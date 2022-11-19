@@ -4,7 +4,7 @@ CREATE TABLE sesion(
     instructor VARCHAR(20),
     fecha DATE,
     hora TIME,
-    id_sesion VARCHAR(20)
+    id_sesion VARCHAR(20) PRIMARY KEY
 )
 
 INSERT INTO sesion(categoria, duracion, instructor, fecha, hora, id_sesion)
@@ -40,7 +40,7 @@ VALUES('Flexibilidad', '2 horas', 'Fernanda Galindo', '2022/10/01', '8:00:00', '
 CREATE TABLE registro_peso(
     fecha DATE,
     peso VARCHAR(20),
-    id_usuario VARCHAR(20)
+    id_usuario VARCHAR(20) PRIMARY KEY
 )
 
 INSERT INTO registro_peso(fecha, peso, id_usuario)
@@ -75,7 +75,7 @@ VALUES('2022/10/01', '190', '16203325')
 
 
 CREATE TABLE entrenador(
-    id_entrenador VARCHAR(20),
+    id_entrenador VARCHAR(20) PRIMARY KEY,
     contrato_horas VARCHAR(20),
     metodo_pago VARCHAR(20)    
 )
