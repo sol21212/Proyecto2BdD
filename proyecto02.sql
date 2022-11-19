@@ -5,7 +5,7 @@ CREATE TABLE sesion(
     fecha DATE,
     hora TIME,
     id_sesion VARCHAR(20) PRIMARY KEY
-)
+);
 
 INSERT INTO sesion(categoria, duracion, instructor, fecha, hora, id_sesion)
 VALUES('Resistencia', '2 horas', 'Pedro Ramirez', '2022/01/20', '8:40:00', '30251150')
@@ -41,7 +41,7 @@ CREATE TABLE registro_peso(
     fecha DATE,
     peso VARCHAR(20),
     id_usuario VARCHAR(20) PRIMARY KEY
-)
+);
 
 INSERT INTO registro_peso(fecha, peso, id_usuario)
 VALUES('2022/02/02', '180', '30317512')
@@ -78,7 +78,7 @@ CREATE TABLE entrenador(
     id_entrenador VARCHAR(20) PRIMARY KEY,
     contrato_horas VARCHAR(20),
     metodo_pago VARCHAR(20)    
-)
+);
 
 INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
 VALUES('30134901', '30', 'Efectivo')
@@ -117,7 +117,10 @@ CREATE TABLE iwatch_sesiones(
     hora TIME,
     ritmo_cardiaco VARCHAR(20),
     calorias VARCHAR(20),
-    tipo_ejercicio VARCHAR(20)
+    tipo_ejercicio VARCHAR(20),
+    PRIMARY KEY(id_usuario, id_sesion),
+    FOREIGN KEY (id_usuario) REFERENCES registro_peso(id_usuario),
+    FOREIGN KEY (id_sesion) REFERENCES sesion(id_sesion)
 );
 
 INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
