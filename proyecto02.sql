@@ -77,38 +77,39 @@ VALUES('2022/10/01', '190', '16203325')
 CREATE TABLE entrenador(
     id_entrenador VARCHAR(20) PRIMARY KEY,
     contrato_horas VARCHAR(20),
-    metodo_pago VARCHAR(20)    
+    metodo_pago VARCHAR(20),
+    nombre VARCHAR(20)
 );
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('30134901', '30', 'Efectivo')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('30134901', '30', 'Efectivo', 'Ramiro Carvajal')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('31787945', '30', 'Efectivo')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('31787945', '30', 'Efectivo', 'Rodolfo Gutierrez')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('19335081', '30', 'Tranferencia')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('19335081', '30', 'Tranferencia', 'Martin Rivera')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('68731572', '30', 'Cheque')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('68731572', '30', 'Cheque', 'Mario Lopez')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('04201999', '30', 'Transferencia')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('04201999', '30', 'Transferencia', 'Andres Galindo')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('19851520', '30', 'Cheque')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('19851520', '30', 'Cheque', 'Fernanda Miguel')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('34210785', '30', 'Efectivo')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('34210785', '30', 'Efectivo', 'Javier Quintero')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('84175519', '30', 'Transferencia')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('84175519', '30', 'Transferencia', 'Carlos Murillo')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('30261997', '30', 'Cheque')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('30261997', '30', 'Cheque', 'Amalia Cabrera')
 
-INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago)
-VALUES('92732177', '30', 'Efectivo')
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('92732177', '30', 'Efectivo', 'Daniela Ortiz')
 
 CREATE TABLE iwatch_sesiones(
     id_usuario VARCHAR(20),
@@ -165,7 +166,9 @@ CREATE TABLE usuario(
     suscripcion_activa VARCHAR(20),
     estado_cuenta VARCHAR(20),
     pago VARCHAR(20),
-    plan VARCHAR(20)
+    plan VARCHAR(20),
+    PRIMARY KEY(id_usuario),
+    FOREIGN KEY (id_usuario) REFERENCES registro_peso(id_usuario)
 );
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
