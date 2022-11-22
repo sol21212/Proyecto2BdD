@@ -22,10 +22,11 @@ class Constructor:
 
         self.datos = ObtenerDatosUsuario()
         # Jalas
-
         self.instructores = self.datos.jalar_instructores(self.instructores)
         self.usuarios = self.datos.jalar_usuarios(self.usuarios)
         self.sesiones = self.datos.jalar_sesiones(self.sesiones)
+
+
 
     def menuInicial(self):
         valor_salida = False
@@ -397,54 +398,37 @@ class Constructor:
 
             elif x == 4:
                 # Modulo Estadisticas
-                self.conexion = psycopg2.connect(host='localhost', database='proyecto2', user='postgres',
-                                                 password='123456', )
-                self.obtener = self.conexion.cursor()
-                self.fecha = date.today()
+                #
+                # print("Top 10 Sesiones que más usuarios tuvieron.\n")
+                #
+                # self.datos.reporte1()
+                #
+                # print("---------------------------------")
+                #
+                # # print("Cantidad de sesiones y usuarios por cada categoría.\n")
+                # #
+                # # self.datos.reporte2()
+                #
+                # print("---------------------------------")
+                #
+                # print("El top 5 de los entrenadores que los usuarios prefieren.\n ")
+                #
+                # self.datos.reporte3()
+                #
+                # print("---------------------------------")
+                #
+                # print("La cantidad de cuentas diamante que se han creado en los últimos 6 meses.\n")
+                #
+                # self.datos.reporte4()
+                #
+                # print("---------------------------------")
+                #
+                # print("¿Cuál es la hora pico donde el servicio es más utilizado?\n")
+                #
+                # self.datos.reporte5()
 
-                print("Top 10 Sesiones que más usuarios tuvieron.\n")
+                self.datos.reporte10()
 
-                self.obtener.execute("SELECT id_sesion FROM sesion LIMIT 10;")
-                Top10 = self.obtener.fetchall()
-
-                print(Top10)
-
-                print("---------------------------------")
-
-                print("Cantidad de sesiones y usuarios por cada categoría.\n")
-
-                self.obtener.execute(
-                    "SELECT count(id_usuarios), count(id_sesiones) FROM sesion INNER JOIN iwatch_sesiones GROUP BY categoria;")
-                SyU = self.obtener.fetchall()
-
-                print(SyU)
-
-                print("---------------------------------")
-
-                print("El top 5 de los entrenadores que los usuarios prefieren.\n ")
-
-                self.obtener.execute("SELECT id_entrenador FROM entrenador LIMIT 5;")
-                Top5 = self.obtener.fetchall()
-
-                print(Top5)
-
-                print("---------------------------------")
-
-                print("La cantidad de cuentas diamante que se han creado en los últimos 6 meses.\n")
-
-                self.obtener.execute("SELECT plan FROM usuario WHERE plan = 'Premium';")
-                Cuentas = self.obtener.fetchall()
-
-                print(Cuentas)
-
-                print("---------------------------------")
-
-                print("¿Cuál es la hora pico donde el servicio es más utilizado?\n")
-
-                self.obtener.execute("SELECT hora FROM sesion, iwatch_sesiones LIMIT 1;")
-                horaPico = self.obtener.fetchall()
-
-                print(horaPico)
 
             elif x == 5:
                 valor_salida = True

@@ -44,7 +44,7 @@ class ObtenerDatosUsuario():
                 usuario.iwatchSesiones = self.jalar_iwatchsesiones(usuario.iwatchSesiones, id_obtenido)
                 usuarios.append(usuario)
 
-            print("Datos obtenidos de usuario")
+
             return usuarios
 
 
@@ -89,7 +89,7 @@ class ObtenerDatosUsuario():
                 sesion = Sesion(fecha, hora, duracion, instructor, categoria, id_sesion)
                 sesiones.append(sesion)
 
-            print("Datos obtenidos de sesiones")
+
             return sesiones
 
 
@@ -130,7 +130,6 @@ class ObtenerDatosUsuario():
                 instructor = Instructor(id_entrenador, "Nombre", contrato_horas, "0", metodo_pago)
                 instructores.append(instructor)
 
-            print("Datos obtenidos de instructores")
             return instructores
 
 
@@ -170,7 +169,7 @@ class ObtenerDatosUsuario():
                 if id_usuario == idUsuario:
                     registroSesiones.append(peso)
 
-            print("Datos obtenidos de registroPeso")
+
             return registroSesiones
 
         except Exception as e:
@@ -212,7 +211,7 @@ class ObtenerDatosUsuario():
                 if id_usuario == idUsuario:
                     sesion = Sesion_watch(id_sesion, id_usuario, ritmo_cardiaco, tipo_ejercicio, calorias, hora, fecha)
                     sesiones.append(sesion)
-            print("Datos obtenidos de iWatch Sesiones")
+
             return sesiones
 
         except Exception as e:
@@ -230,6 +229,89 @@ class ObtenerDatosUsuario():
             print("Datos agregados a iWatch Sesiones")
             self.obtener.execute(valor)
             self.conexion.commit()
+
+        except Exception as e:
+            print(e)
+
+    def reporte1(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT id_sesion FROM sesion LIMIT 10;")
+            sesions = self.obtener.fetchall()
+            for row in sesions:
+                print(row)
+
+        except Exception as e:
+            print(e)
+
+    def reporte2(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT count(id_usuarios), count(id_sesiones) FROM sesion INNER JOIN iwatch_sesiones GROUP BY categoria;")
+            sesions = self.obtener.fetchall()
+            for row in sesions:
+                print(row)
+
+        except Exception as e:
+            print(e)
+
+    def reporte3(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT id_entrenador FROM entrenador LIMIT 5;")
+            sesions = self.obtener.fetchall()
+            for row in sesions:
+                print(row)
+
+        except Exception as e:
+            print(e)
+
+    def reporte4(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT plan FROM usuario WHERE plan = 'Premium';")
+            sesions = self.obtener.fetchall()
+            for row in sesions:
+                print(row)
+
+        except Exception as e:
+            print(e)
+
+    def reporte5(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT hora FROM sesion, iwatch_sesiones LIMIT 1;")
+            sesions = self.obtener.fetchall()
+            for row in sesions:
+                print(row)
+
+        except Exception as e:
+            print(e)
+
+    def reporte10(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT iwatch_sesiones2.hora, iwatch_sesiones2.fecha, COUNT(iwatch_sesiones2.id_usuario) FROM iwatch_sesiones2  GROUP BY iwatch_sesiones2.hora, iwatch_sesiones2.fecha ORDER BY iwatch_sesiones2.hora DESC LIMIT 5")
+            sesions = self.obtener.fetchall()
+
+            print("El top 5 sesiones que más usarios tuvieron: ")
+            for row in sesions:
+                horario = str(row[0])
+                fecha = str(row[1])
+                total = str(row[2])
+                print("Horario: "+ horario + "  Fecha:" + fecha + "  Total: "+ total)
 
         except Exception as e:
             print(e)
