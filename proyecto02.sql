@@ -74,6 +74,130 @@ INSERT INTO registro_peso(fecha, peso, id_usuario)
 VALUES('2022/10/01', '190', '16203325')
 
 
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/02/02', '180', '93708421')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/01/15', '200', '27869724')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/03/01', '140', '91120015')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/04/20', '175', '29194432')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/06/17', '130', '43864487')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/08/08', '160', '67985642')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/07/23', '220', '75860933')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/05/31', '195', '44218827')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/09/11', '210', '17839945')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/10/01', '190', '87213495')
+
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/02/02', '180', '21571301')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/01/15', '200', '81245978')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/03/01', '140', '58997739')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/04/20', '175', '57397711')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/06/17', '130', '44465629')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/08/08', '160', '82730364')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/07/23', '220', '90235475')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/05/31', '195', '42887117')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/09/11', '210', '46732406')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/10/01', '190', '16203325')
+
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/02/02', '180', '27571331')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/01/15', '200', '18245978')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/03/01', '140', '50997638')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/04/20', '175', '37597712')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/06/17', '130', '66638233')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/08/08', '160', '88812335')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/07/23', '220', '77298901')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/05/31', '195', '99922110')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/09/11', '210', '10130322')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/10/01', '190', '55577899')
+
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/02/02', '180', '94908133')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/01/15', '200', '39065671')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/03/01', '140', '19921867')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/04/20', '175', '27810104')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/06/17', '130', '00145675')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/08/08', '160', '09606916')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/07/23', '220', '30806203')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/05/31', '195', '15141106')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/09/11', '210', '45327590')
+
+INSERT INTO registro_peso(fecha, peso, id_usuario)
+VALUES('2022/10/01', '190', '27621210')
+
+
 CREATE TABLE entrenador(
     id_entrenador VARCHAR(20) PRIMARY KEY,
     contrato_horas VARCHAR(20),
@@ -304,7 +428,7 @@ INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, ca
 VALUES('Antonia Mancero', '34', 'Zona 20', '99922110', '1.55 mts', '130 lbs', '30', 'No', 'No', 'Activa', 'Transferencia', 'Básico' );
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
-VALUES('Fidel Pelaez', '33', 'Zona 17', '101303222', '1.70 mts', '145 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
+VALUES('Fidel Pelaez', '33', 'Zona 17', '10130322', '1.70 mts', '145 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Carlos Ortiz', '28', 'Zona 9', '55577899', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
