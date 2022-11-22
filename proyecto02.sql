@@ -200,7 +200,7 @@ VALUES('Natalia Madrid', '33', 'Zona 16', '60423746', '1.70 mts', '145 lbs', '30
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Valeria Carrillo', '28', 'Zona 10', '16203325', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
-*
+
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Antonio Sanchez', '31', 'Zona 17', '93708421', '1.75 mts', '160 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
@@ -231,7 +231,7 @@ VALUES('Isabel Adames', '33', 'Zona 10', '17839945', '1.70 mts', '145 lbs', '30'
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Ares Torres', '28', 'Zona 12', '87213495', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
-*
+
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Eric Assa', '31', 'Zona 22', '21571301', '1.75 mts', '160 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
@@ -262,7 +262,7 @@ VALUES('Christian Carden', '33', 'Zona 18', '46732406', '1.70 mts', '145 lbs', '
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Samuel Garcia', '28', 'Zona 15', '16203325', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
-*
+
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Javier Farnes', '31', 'Zona 13', '27571331', '1.75 mts', '160 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
@@ -293,7 +293,7 @@ VALUES('Fidel Pelaez', '33', 'Zona 17', '101303222', '1.70 mts', '145 lbs', '30'
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Carlos Ortiz', '28', 'Zona 9', '55577899', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
-*
+
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Jorge Rivero', '31', 'Zona 6', '94908133', '1.75 mts', '160 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
