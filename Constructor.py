@@ -4,6 +4,8 @@ from Instructor import *
 import psycopg2
 from datetime import date
 from psycopg2 import Error
+from ObtenerDatosUsuario import *
+import  random
 
 
 class Constructor:
@@ -11,12 +13,17 @@ class Constructor:
     def __init__(self):
         self.entrenador_zero = Instructor(0, "Nombre", "contrato", "estadoCuenta", "metodoPago")
         self.sesion_zero = Sesion("", "", "", "", "", 0)
-        self.usuario_zero = Persona("", "", "", "", "", "", "", contrasena="1",pago="", id=1)
-        self.usuario_uno = Persona("", "", "", "", "", "", "", contrasena="123", pago="", id=123)
+        self.usuario_zero = Persona("", "", "", "", "", "", "", contrasena="1", pago="", id="1")
+        self.usuario_uno = Persona("", "", "", "", "", "", "", contrasena="123", pago="", id="123")
         self.usuario_zero.setAdminStatus(True)
         self.sesiones = [self.sesion_zero]
         self.usuarios = [self.usuario_zero, self.usuario_uno]
         self.instructores = [self.sesion_zero]
+
+        self.datos = ObtenerDatosUsuario()
+        # Jalas
+
+        self.instructores = self.datos.jalar_instructores(self.instructores)
 
     def menuInicial(self):
         valor_salida = False
@@ -66,6 +73,7 @@ class Constructor:
 
                 sesion = Sesion(fecha, hora, duracion, instructor, categoria, nuevoID)
                 persona.agregarSesion(sesion)
+                self.datos.agregarSesion(sesion)
                 self.sesiones.append(sesion)
             elif x == 2:
                 persona.mostrarRegistroSesiones()
@@ -92,9 +100,11 @@ class Constructor:
                 sesion.mostrarDatos()
 
             elif x == 5:
+                id = input("Ingrese su id:  ")
                 peso = input("Ingrese su peso Actual:  ")
                 persona.setPesoActual(peso)
                 persona.agregarPesoSemanal(peso)
+                self.datos.agregarRegistroPeso(peso, id)
 
             elif x == 6:
                 persona.mostrarRegistroPeso()
@@ -123,12 +133,13 @@ class Constructor:
             print("7. Modificar usuarios.")
             print("8. Dar de baja usuario.")
             print("9. Modulo de Reportes.")
-            print("10. Salir.")
+            print("10. Simulación de sesión.")
+            print("11. Salir.")
 
             x = int(input(""))
 
             if x == 0:
-                #Crear Usuario
+                # Crear Usuario
                 nombre = input("Ingrese el nombre del usuario:  ")
                 edad = input("Ingrese la edad del usuario:  ")
                 altura = input("Ingrese la altura del usuario:  ")
@@ -139,16 +150,16 @@ class Constructor:
                 plan = input("Ingrese el plan del usuario:  ")
                 metodoPago = input("Ingrese el metodo de pago del usuario:  ")
                 ultimoUsuario = self.usuarios[len(self.usuarios) - 1]
-                nuevoID = ultimoUsuario.id + 1
+                nuevoID = str(int(ultimoUsuario.id) + 1)
 
                 usuario = Persona(nombre, edad, altura, calorieIntake, pesoIncial, pesoActual, plan, contrasena,
                                   metodoPago, nuevoID)
                 self.usuarios.append(usuario)
-
+                self.datos.agregarUsuario(usuario)
                 self.imprimirUsuarios()
 
             elif x == 1:
-                #Agregar Instructor
+                # Agregar Instructor
                 nombre = input("Ingrese el nombre del instructor:  ")
                 contrato = input("Ingrese el contrato del instructor:  ")
                 estadoCuenta = input("Ingrese el estado de Cuenta del instructor:  ")
@@ -158,7 +169,9 @@ class Constructor:
                 instructor = Instructor(nuevoID, nombre, contrato, estadoCuenta, metodoPago)
                 self.instructores.append(instructor)
 
-                self.imprimirInstructores()
+                self.datos.agregarInstructor(instructor)
+                instructor.imprimir()
+
             elif x == 2:
                 # Modificar Instructor
                 instructor = self.entrenador_zero
@@ -190,31 +203,34 @@ class Constructor:
                     instructor.cambioMetodoPago(nuevoDato)
 
                 self.instructores.insert(valor, instructor)
-                self.imprimirInstructores()
+                self.datos.agregarInstructor(instructor)
+                instructor.imprimir()
 
             elif x == 3:
-                #Dar de baja instructor
+                # Dar de baja instructor
                 instructor = self.entrenador_zero
                 idInstructor = input("Por favor ingrese el ID Instructor que desea dar de baja:")
                 for l in range(len(self.instructores)):
                     if l == idInstructor:
                         instructor = self.instructores[l]
                         self.instructores.pop(l)
-                self.imprimirInstructores()
 
             elif x == 4:
-                #Agregar Sesion
+                # Agregar Sesion
                 fecha = input("Ingrese la fecha de la sesión:  ")
                 hora = input("Ingrese la hora de la sesión:  ")
                 duracion = input("Ingrese la duración de la sesión:  ")
                 instructor = input("Ingrese el ID del Instructor:  ")
                 categoria = input("Ingrese la categoria de la sesión:  ")
                 ultimaSesion = self.sesiones[len(self.sesiones) - 1]
-                nuevoID = ultimaSesion.id_sesion + 1
+                nuevoID = str(int(ultimaSesion.id_sesion) + 1)
 
                 sesion = Sesion(fecha, hora, duracion, instructor, categoria, nuevoID)
+
                 self.sesiones.append(sesion)
                 self.imprimirSesiones()
+                self.datos.agregarSesion(sesion)
+                sesion.imprimir()
 
             elif x == 5:
                 # Modificar Sesion
@@ -226,7 +242,6 @@ class Constructor:
                         sesion = self.sesiones[l]
                         self.sesiones.pop(l)
                         valor = l
-
 
                 print("Por favor ingrese el numero del aspecto que desea modificar:")
                 print("1. Fecha.")
@@ -249,10 +264,11 @@ class Constructor:
                     sesion.setCategoria(nuevoDato)
 
                 self.sesiones.insert(valor, sesion)
-                self.imprimirSesiones()
+                self.datos.agregarSesion(sesion)
+                sesion.imprimir()
 
             elif x == 6:
-                #Dar de baja sesion
+                # Dar de baja sesion
                 sesion = self.sesion_zero
                 idSesion = input("Por favor ingrese el ID de la Sesion que desea modificar:")
                 for l in range(len(self.sesiones)):
@@ -260,7 +276,7 @@ class Constructor:
                         sesion = self.sesiones[l]
                         self.sesiones.pop(l)
 
-                self.imprimirSesiones()
+
 
             elif x == 7:
                 # Modificar Usuario
@@ -272,7 +288,6 @@ class Constructor:
                         usuario = self.usuarios[l]
                         self.usuarios.pop(l)
                         valor = l
-
 
                 print("Por favor ingrese el numero del aspecto que desea modificar:")
                 print("1. Nombre.")
@@ -310,11 +325,12 @@ class Constructor:
                     usuario.setAdminStatus(nuevoDato)
 
                 self.usuarios.insert(valor, usuario)
-                self.imprimirUsuarios()
+                self.datos.agregarUsuario(usuario)
+                usuario.imprimir()
 
 
             elif x == 8:
-                #Dar de baja usuario
+                # Dar de baja usuario
                 usuario = self.usuario_zero
                 idUser = input("Por favor ingrese el ID del Usuario que desea dar de baja:")
                 for l in range(len(self.usuarios)):
@@ -325,56 +341,75 @@ class Constructor:
 
             elif x == 9:
                 # Modulo Estadisticas
-                self.conexion = psycopg2.connect(host='localhost', database='proyecto2', user='postgres', password='123456', )
+                self.conexion = psycopg2.connect(host='localhost', database='proyecto2', user='postgres',
+                                                 password='123456', )
                 self.obtener = self.conexion.cursor()
                 self.fecha = date.today()
-                
+
                 print("Top 10 Sesiones que más usuarios tuvieron.\n")
 
                 self.obtener.execute("SELECT id_sesion FROM sesion LIMIT 10;")
                 Top10 = self.obtener.fetchall()
 
-                
                 print(Top10)
-                
+
                 print("---------------------------------")
-                
+
                 print("Cantidad de sesiones y usuarios por cada categoría.\n")
 
-                self.obtener.execute("SELECT count(id_usuarios), count(id_sesiones) FROM sesion INNER JOIN iwatch_sesiones GROUP BY categoria;")
+                self.obtener.execute(
+                    "SELECT count(id_usuarios), count(id_sesiones) FROM sesion INNER JOIN iwatch_sesiones GROUP BY categoria;")
                 SyU = self.obtener.fetchall()
 
-                
                 print(SyU)
-                
+
                 print("---------------------------------")
-                
+
                 print("El top 5 de los entrenadores que los usuarios prefieren.\n ")
-             
+
                 self.obtener.execute("SELECT id_entrenador FROM entrenador LIMIT 5;")
                 Top5 = self.obtener.fetchall()
-    
+
                 print(Top5)
-                
+
                 print("---------------------------------")
-                
+
                 print("La cantidad de cuentas diamante que se han creado en los últimos 6 meses.\n")
 
                 self.obtener.execute("SELECT plan FROM usuario WHERE plan = 'Premium';")
                 Cuentas = self.obtener.fetchall()
-                
+
                 print(Cuentas)
-                
+
                 print("---------------------------------")
-                
+
                 print("¿Cuál es la hora pico donde el servicio es más utilizado?\n")
-                
+
                 self.obtener.execute("SELECT hora FROM sesion, iwatch_sesiones LIMIT 1;")
                 horaPico = self.obtener.fetchall()
-                
+
                 print(horaPico)
-                
+
             elif x == 10:
+                fechaSesion = input("Por favor ingrese la fecha de la sesion:")
+                horaSesion = input("Por favor ingrese la hora de la sesion:")
+                numUsuarios = int(input("Por favor ingrese el ID del Usuario que desea modificar:"))
+                ultimaSesion = self.sesiones[len(self.sesiones) - 1]
+                nuevoID = ultimaSesion.id_sesion + 1
+
+                rc = random.randint(50, 250)
+                calorias = random.randint(10, 1250)
+
+                decision = random.randint(0, 5)
+                ejercicio = ""
+                if decision == 0:
+                    ejercicio = "Aerobicos"
+
+                for i in range(numUsuarios):
+                    sesion = Sesion_watch(nuevoID, i, rc, ejercicio, calorias, horaSesion, fechaSesion)
+                    self.datos.agregariWatch(sesion)
+
+            elif x == 11:
                 valor_salida = True
             else:
                 print("Error. Intente de nuevo.")
@@ -383,15 +418,17 @@ class Constructor:
 
     def crearCuenta(self):
 
-        nombre = input("Ingrese su nombre:  ")
-        edad = input("Ingrese su edad:  ")
-        altura = input("Ingrese su altura:  ")
-        calorieIntake = input("Ingrese sus calorias diarias:  ")
-        pesoIncial = input("Ingrese su peso inicial :  ")
-        pesoActual = pesoIncial
-        contrasena = input("Ingrese su contrasena:  ")
-        plan = input("Ingrese su plan del usuario (ORO/DIAMANTE):  ")
-        metodoPago = input("Ingrese el metodo de pago:  ")
+        nombre = str(input("Ingrese su nombre:  "))
+        edad = str(input("Ingrese su edad:  "))
+        altura = str(input("Ingrese su altura:  "))
+        calorieIntake = str(input("Ingrese sus calorias diarias:  "))
+        pesoIncial = str(input("Ingrese su peso inicial :  "))
+        pesoActual = str(pesoIncial)
+        contrasena = str(input("Ingrese su contrasena:  "))
+        plan = str(input("Ingrese su plan del usuario (ORO/DIAMANTE):  "))
+        metodoPago = str(input("Ingrese el metodo de pago:  "))
+        ultimoUsuario = self.usuarios[len(self.usuarios) - 1]
+        nuevoID = str(int(ultimoUsuario.id) + 1)
 
         nuevoID = len(self.usuarios)
 
@@ -400,6 +437,7 @@ class Constructor:
         if plan == "ADMIN":
             usuario.admin = True
         self.usuarios.append(usuario)
+        self.datos.agregarUsuario(usuario)
 
         if usuario.admin == True:
             self.menuAdmin(usuario)
@@ -409,24 +447,27 @@ class Constructor:
     def inicioSesion(self):
         entrada = False
         usuario = self.usuario_zero
+
         valor = 0
         while not entrada:
-            idSearch = int(input("Ingrese el ID del usuario: "))
+            idSearch = str(input("Ingrese el ID del usuario: "))
             passwordSearch = str(input("Ingrese la contraseña del usuario: "))
-            usuario = self.usuario_zero
-            for l in range(len(self.usuarios)):
-                usuario = self.usuarios[l]
-                if usuario.getID() == idSearch and usuario.getContrasena() == passwordSearch:
-                    usuario = self.usuarios[l]
 
+            usuarios = self.usuario_zero
+            for usuario in self.usuarios:
+                if usuario.getID() == idSearch and usuario.getContrasena() == passwordSearch:
+                    usuarios = usuario
                     entrada = True
 
+                elif usuario.getID() == idSearch:
+                    print(usuario.getID())
+                    print(usuario.getContrasena())
 
-        if usuario.getAdminStatus() == True:
+        if usuarios.getAdminStatus():
+
             self.menuAdmin(usuario)
         else:
             self.menuNormal(usuario)
-
 
     def imprimirSesiones(self):
 
