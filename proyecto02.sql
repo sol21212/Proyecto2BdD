@@ -111,6 +111,21 @@ VALUES('30261997', '30', 'Cheque', 'Amalia Cabrera')
 INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
 VALUES('92732177', '30', 'Efectivo', 'Daniela Ortiz')
 
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('20111983', '30', 'Cheque', 'Sean Powers')
+
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('20102774', '30', 'Efectivo', 'Sebastian Manzilla')
+
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('95857966', '30', 'Transferencia', 'Gregorio Cortez')
+
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('83945907', '30', 'Cheque', 'Abigail Jensen')
+
+INSERT INTO entrenador(id_entrenador, contrato_horas, metodo_pago, nombre)
+VALUES('41141988', '30', 'Efectivo', 'Mike Johnson')
+
 CREATE TABLE iwatch_sesiones(
     id_usuario VARCHAR(20),
     id_sesion VARCHAR(20),
