@@ -293,6 +293,126 @@ VALUES('60423746', '93443740', '2022/04/17', '9:45:00', '90 latidos p/minuto', '
 INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
 VALUES('16203325', '29961993', '2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta');
 
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('93708421', '30251150', '2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('27869724', '11298527', '2022/05/07', '8:30:00', '75 latidos p/minuto', '30', 'Flexiones');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('91120015', '40372532', '2022/02/25', '9:00:00', '90 latidos p/minuto', '45', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('29194432', '27869710', '2022/07/01', '10:30:00', '100 latidos p/minuto', '50', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('43864487', '18476991', '2022/04/23', '11:00:00', '85 latidos p/minuto', '60', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('67985642', '11928176', '2022/09/05', '12:30:00', '110 latidos p/minuto', '35', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('75860933', '17565569', '2022/08/12', '10:00:00', '110 latidos p/minuto', '40', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('44218827', '77645853', '2022/10/10', '12:00:00', '95 latidos p/minuto', '30', 'Sentadillas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('17839945', '93443740', '2022/04/17', '9:45:00', '90 latidos p/minuto', '55', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('87213495', '29961993', '2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('21571301', '30251150', '2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('81245978', '11298527', '2022/05/07', '8:30:00', '75 latidos p/minuto', '30', 'Flexiones');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('58997739', '40372532', '2022/02/25', '9:00:00', '90 latidos p/minuto', '45', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('57397711', '27869710', '2022/07/01', '10:30:00', '100 latidos p/minuto', '50', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('44465629', '18476991', '2022/04/23', '11:00:00', '85 latidos p/minuto', '60', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('82730364', '11928176', '2022/09/05', '12:30:00', '110 latidos p/minuto', '35', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('90235475', '17565569', '2022/08/12', '10:00:00', '110 latidos p/minuto', '40', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('42887117', '77645853', '2022/10/10', '12:00:00', '95 latidos p/minuto', '30', 'Sentadillas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('46732406', '93443740', '2022/04/17', '9:45:00', '90 latidos p/minuto', '55', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('19503326', '29961993', '2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('27571331', '30251150', '2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('18245978', '11298527', '2022/05/07', '8:30:00', '75 latidos p/minuto', '30', 'Flexiones');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('50997638', '40372532', '2022/02/25', '9:00:00', '90 latidos p/minuto', '45', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('37597712', '27869710', '2022/07/01', '10:30:00', '100 latidos p/minuto', '50', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('66638233', '18476991', '2022/04/23', '11:00:00', '85 latidos p/minuto', '60', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('88812335', '11928176', '2022/09/05', '12:30:00', '110 latidos p/minuto', '35', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('77298901', '17565569', '2022/08/12', '10:00:00', '110 latidos p/minuto', '40', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('99922110', '77645853', '2022/10/10', '12:00:00', '95 latidos p/minuto', '30', 'Sentadillas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('10130322', '93443740', '2022/04/17', '9:45:00', '90 latidos p/minuto', '55', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('55577899', '29961993', '2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('94908133', '30251150', '2022/03/15', '7:30:00', '60 latidos p/minuto', '40', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('39065671', '11298527', '2022/05/07', '8:30:00', '75 latidos p/minuto', '30', 'Flexiones');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('19921867', '40372532', '2022/02/25', '9:00:00', '90 latidos p/minuto', '45', 'Abdominales');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('27810104', '27869710', '2022/07/01', '10:30:00', '100 latidos p/minuto', '50', 'Bicicleta');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('00145675', '18476991', '2022/04/23', '11:00:00', '85 latidos p/minuto', '60', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('09606916', '11928176', '2022/09/05', '12:30:00', '110 latidos p/minuto', '35', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('30806203', '17565569', '2022/08/12', '10:00:00', '110 latidos p/minuto', '40', 'Plancha');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('15141106', '77645853', '2022/10/10', '12:00:00', '95 latidos p/minuto', '30', 'Sentadillas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('45327590', '93443740', '2022/04/17', '9:45:00', '90 latidos p/minuto', '55', 'Pesas');
+
+INSERT INTO iwatch_sesiones(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+VALUES('27621210', '29961993', '2022/09/30', '8:45:00', '100 latidos p/minuto', '65', 'Bicicleta');
+
 CREATE TABLE usuario(
     nombre VARCHAR(20),
     edad VARCHAR(20),
@@ -400,7 +520,7 @@ INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, ca
 VALUES('Christian Carden', '33', 'Zona 18', '46732406', '1.70 mts', '145 lbs', '30', 'No', 'Si', 'Activa', 'Efectivo', 'Premium' );
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
-VALUES('Samuel Garcia', '28', 'Zona 15', '16203325', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
+VALUES('Samuel Garcia', '28', 'Zona 15', '19503326', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'Premium' );
 
 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
