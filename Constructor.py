@@ -13,7 +13,7 @@ class Constructor:
     def __init__(self):
         self.entrenador_zero = Instructor(0, "Nombre", "contrato", "estadoCuenta", "metodoPago")
         self.sesion_zero = Sesion("", "", "", "", "", 0)
-        self.usuario_zero = Persona("", "", "", "", "", "", plan= "ADMIN 1", contrasena="1", pago="", id="1")
+        self.usuario_zero = Persona("", "", "", "", "", "", plan= "ADMIN 3", contrasena="1", pago="", id="1")
         self.usuario_uno = Persona("", "", "", "", "", "", "", contrasena="123", pago="", id="123")
         self.usuario_zero.setAdminStatus(True)
         self.sesiones = [self.sesion_zero]
@@ -153,6 +153,7 @@ class Constructor:
                 self.usuarios.append(usuario)
                 self.datos.agregarUsuario(usuario)
                 self.imprimirUsuarios()
+                self.datos.agregar_registro_bitacora(persona)
 
             elif x == 2:
                 # Modificar Usuario
@@ -202,6 +203,7 @@ class Constructor:
 
                 self.usuarios.insert(valor, usuario)
                 self.datos.agregarUsuario(usuario)
+                self.datos.agregar_registro_bitacora(persona)
                 usuario.imprimir()
 
             elif x == 3:
@@ -251,6 +253,7 @@ class Constructor:
                 self.sesiones.append(sesion)
                 self.imprimirSesiones()
                 self.datos.agregarSesion(sesion)
+                self.datos.agregar_registro_bitacora(persona)
                 sesion.imprimir()
 
             elif x == 2:
@@ -286,6 +289,7 @@ class Constructor:
 
                 self.sesiones.insert(valor, sesion)
                 self.datos.agregarSesion(sesion)
+                self.datos.agregar_registro_bitacora(persona)
                 sesion.imprimir()
 
             elif x == 3:
@@ -300,9 +304,11 @@ class Constructor:
             elif x == 4:
                 fechaSesion = input("Por favor ingrese la fecha de la sesion:")
                 horaSesion = input("Por favor ingrese la hora de la sesion:")
+                diaSesion = input("Por favor ingrese el día de la sesion:")
+                entrenadorSesion = input("Por favor ingrese el id del instructor:")
                 numUsuarios = int(input("Por favor ingrese el número de usuarios a ingresar:"))
-                ultimaSesion = self.sesiones[len(self.sesiones) - 1]
-                nuevoID = ultimaSesion.id_sesion + 1
+                ultimaSesion = (self.sesiones[len(self.sesiones) - 1])
+                nuevoID = str(ultimaSesion.id_sesion + 1)
 
                 rc = random.randint(50, 250)
                 calorias = random.randint(10, 1250)
@@ -314,7 +320,7 @@ class Constructor:
 
                 for i in range(numUsuarios):
                     sesion = Sesion_watch(nuevoID, i, rc, ejercicio, calorias, horaSesion, fechaSesion)
-                    self.datos.agregariWatch(sesion)
+                    self.datos.agregariWatch(sesion, diaSesion, entrenadorSesion)
 
             elif x == 5:
                 valor_salida = True
@@ -350,6 +356,7 @@ class Constructor:
                 self.instructores.append(instructor)
 
                 self.datos.agregarInstructor(instructor)
+                self.datos.agregar_registro_bitacora(persona)
                 instructor.imprimir()
 
             elif x == 2:
@@ -384,6 +391,7 @@ class Constructor:
 
                 self.instructores.insert(valor, instructor)
                 self.datos.agregarInstructor(instructor)
+                self.datos.agregar_registro_bitacora(persona)
                 instructor.imprimir()
 
             elif x == 3:
@@ -426,8 +434,16 @@ class Constructor:
                 # print("¿Cuál es la hora pico donde el servicio es más utilizado?\n")
                 #
                 # self.datos.reporte5()
-
+                print("---------------------------------")
                 self.datos.reporte10()
+                print("---------------------------------")
+                self.datos.reporte11()
+                print("---------------------------------")
+                self.datos.reporte12()
+                print("---------------------------------")
+                self.datos.reporte13()
+                print("---------------------------------")
+                self.datos.reporte14()
 
 
             elif x == 5:

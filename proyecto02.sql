@@ -850,7 +850,7 @@ FOR EACH ROW
 
 CREATE VIEW TOP5_FECHAS AS
     SELECT iwatch_sesiones.hora, iwatch_sesiones.fecha, COUNT(iwatch_sesiones.id_usuario)
-    FROM iwatch_sesiones    
+    FROM iwatch_sesiones
     GROUP BY iwatch_sesiones.hora, iwatch_sesiones.fecha
     ORDER BY iwatch_sesiones.hora DESC
 
@@ -859,23 +859,31 @@ CREATE VIEW TOP10_ENT_X_DIASEMANA AS
     FROM iwatch_sesiones INNER JOIN entrenador ON iwatch_sesiones.id_entrenador = entrenador.id_entrenador
     GROUP BY iwatch_sesiones.dia_semana, entrenador.nombre
     ORDER BY COUNT(iwatch_sesiones.id_entrenador) DESC
-
+DROP VIEW TOP5_MODFICADORES
 CREATE VIEW TOP5_MODFICADORES AS
-    SELECT bitacora.accion, bitacora.fecha, COUNT(bitacora.accion)
-    FROM bitacora
-    WHERE bitacora.accion = 'modificacion'
-    GROUP BY bitacora.accion, bitacora.fecha
-    ORDER BY bitacora.accion DESC
+    SELECT registro_bitacora.idadmin, bitacora.fecha, COUNT(bitacora.accion)
+    FROM bitacora INNER JOIN registro_bitacora ON bitacora.idTransaccion = registro_bitacora.idTransaccion
+    WHERE bitacora.tabla = 'Usuario'
+    GROUP BY registro_bitacora.idadmin, bitacora.fecha
+    ORDER BY COUNT(bitacora.accion)  DESC
+
+CREATE VIEW TOP5_FECHAS AS
+    SELECT iwatch_sesiones.hora, iwatch_sesiones.fecha, COUNT(iwatch_sesiones.id_usuario)
+    FROM iwatch_sesiones
+    WHERE iwatch_sesiones.fecha = '2022/04/23'
+    GROUP BY iwatch_sesiones.hora, iwatch_sesiones.fecha
+    ORDER BY iwatch_sesiones.hora DESC
+    LIMIT 20
 
 CREATE VIEW TOP20_INACTIVOS AS
     SELECT usuario.estado_cuenta, usuario.nombre, COUNT(usuario.estado_cuenta)
     FROM usuario
-    WHERE usuario.estado_cuenta = 'Inactiva' 
+    WHERE usuario.estado_cuenta = 'Inactiva'
     GROUP BY usuario.estado_cuenta, usuario.nombre
     ORDER BY COUNT(usuario.estado_cuenta) DESC
     LIMIT 20
-    
--- Ejemplos de ejecucion de las vistas 
+
+-- Ejemplos de ejecucion de las vistas
 SELECT *
 FROM TOP5_FECHAS
 WHERE fecha = '2022/04/23'
@@ -883,12 +891,12 @@ LIMIT 5
 
 SELECT *
 FROM TOP10_ENT_X_DIASEMANA
-WHERE dia_semana = 4
+WHERE dia_semana = 3
 LIMIT 10
 
-SELECT * 
+SELECT *
 FROM TOP5_MODFICADORES
-WHERE fecha = '2022/04/23'
+WHERE fecha = '2022/11/24'
 LIMIT 5
 
 SELECT *

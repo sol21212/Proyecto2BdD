@@ -218,15 +218,36 @@ class ObtenerDatosUsuario():
 
             print(e)
 
-    def agregariWatch(self, r):
+    def agregariWatch(self, r, dia, entrenador):
 
         try:
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
-            valor = """INSERT INTO iwatch_sesiones2(id_usuario, id_sesion, fecha, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
-                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(r.getIdUsuario(), r.getId_sesion(), r.getFecha(), r.getHora(), r.getRc(), r.getCalBurned(), r.getTipo_ejercicio())
+
+
+            valor = """INSERT INTO iwatch_sesiones(id_usuario, id_sesion, id_entrenador, fecha, dia_semana, hora, ritmo_cardiaco, calorias, tipo_ejercicio)
+                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(r.getIdUsuario(), r.getId_sesion(), entrenador, r.getFecha(), dia,r.getHora(), r.getRc(), r.getCalBurned(), r.getTipo_ejercicio())
 
             print("Datos agregados a iWatch Sesiones")
+            self.obtener.execute(valor)
+            self.conexion.commit()
+
+        except Exception as e:
+            print(e)
+
+
+    def agregar_registro_bitacora(self, r):
+
+        try:
+
+            self.obtener.execute("SELECT COUNT(*) FROM bitacora")
+            registros = self.obtener.fetchall()
+            for row in registros:
+                id_transaccion = str(row[0])
+            valor = """INSERT INTO registro_bitacora(idTransaccion, idAdmin)
+                    VALUES('{}', '{}')""".format(id_transaccion, r.getIdUsuario())
+
+            print("Datos agregados a regitro bitacora")
             self.obtener.execute(valor)
             self.conexion.commit()
 
@@ -303,7 +324,7 @@ class ObtenerDatosUsuario():
             # print("Ingresar ID del usuario de interés:\n")
             # id_ingresado = input()
 
-            self.obtener.execute("SELECT iwatch_sesiones2.hora, iwatch_sesiones2.fecha, COUNT(iwatch_sesiones2.id_usuario) FROM iwatch_sesiones2  GROUP BY iwatch_sesiones2.hora, iwatch_sesiones2.fecha ORDER BY iwatch_sesiones2.hora DESC LIMIT 5")
+            self.obtener.execute("SELECT iwatch_sesiones.hora, iwatch_sesiones.fecha, COUNT(iwatch_sesiones.id_usuario) FROM iwatch_sesiones  GROUP BY iwatch_sesiones2.hora, iwatch_sesiones2.fecha ORDER BY iwatch_sesiones2.hora DESC LIMIT 5")
             sesions = self.obtener.fetchall()
 
             print("El top 5 sesiones que más usarios tuvieron: ")
@@ -312,6 +333,78 @@ class ObtenerDatosUsuario():
                 fecha = str(row[1])
                 total = str(row[2])
                 print("Horario: " + horario + "  Fecha:" + fecha + "  Total: "+ total)
+
+        except Exception as e:
+            print(e)
+
+    def reporte11(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT * FROM TOP5_FECHAS WHERE fecha = '2022/04/23' LIMIT 5")
+            sesions = self.obtener.fetchall()
+
+            print("El top 5 sesiones que más fechas tuvieron: ")
+            for row in sesions:
+                horario = str(row[0])
+                fecha = str(row[1])
+                total = str(row[2])
+                print("Horario: " + horario + "  Fecha:" + fecha + "  Total: "+ total)
+
+        except Exception as e:
+            print(e)
+
+    def reporte12(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT * FROM TOP10_ENT_X_DIASEMANA WHERE dia_semana = 4 LIMIT 10")
+            sesions = self.obtener.fetchall()
+
+            print("El top 10 entradas dia semana ")
+            for row in sesions:
+                dia = str(row[0])
+                nombre = str(row[1])
+                total = str(row[2])
+                print("Día: " + dia + "  Nombre:" + nombre + "  Total: "+ total)
+
+        except Exception as e:
+            print(e)
+
+    def reporte13(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT *  FROM TOP5_MODFICADORES WHERE fecha = '2022/04/23' LIMIT 5")
+            sesions = self.obtener.fetchall()
+
+            print("El top 5 modificadores: ")
+            for row in sesions:
+                accion = str(row[0])
+                fecha = str(row[1])
+                total = str(row[2])
+                print("Accion: " + accion + "  fecha:" + fecha + "  Total: "+ total)
+
+        except Exception as e:
+            print(e)
+
+    def reporte14(self):
+        try:
+            # print("Ingresar ID del usuario de interés:\n")
+            # id_ingresado = input()
+
+            self.obtener.execute("SELECT * FROM TOP20_INACTIVOS")
+            sesions = self.obtener.fetchall()
+
+            print("El top 20 inactivos: ")
+            for row in sesions:
+                estado = str(row[0])
+                nombre = str(row[1])
+                total = str(row[2])
+                print("Estado cuenta: " + estado + "  Nombre:" + nombre + "  Total: "+ total)
 
         except Exception as e:
             print(e)
