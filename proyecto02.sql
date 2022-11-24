@@ -587,3 +587,264 @@ VALUES('Ambrocio Orellana', '33', 'Zona 15', '45327590', '1.70 mts', '145 lbs', 
 INSERT INTO usuario(nombre, edad, direccion, id_usuario, altura, peso_actual, calorias_diarias, administrador, suscripcion_activa, estado_cuenta, pago, plan)
 VALUES('Jaime Robles', '28', 'Zona 11', '27621210', '1.73 mts', '135 lbs', '25', 'Si', 'Si', 'Activa', 'Transferencia', 'ADMIN 3' );
 
+SELECT *
+FROM usuario
+DROP TABLE bitacora;
+CREATE TABLE bitacora(
+    idTransaccion     INT PRIMARY KEY,
+    accion      VARCHAR(20),
+    tabla       VARCHAR(20),
+    fecha       DATE,
+    idObjeto    INT
+);
+
+CREATE TABLE registro_bitacora(
+    idTransaccion     INT PRIMARY KEY,
+    idAdmin     INT
+);
+--- insert entrenador ---
+CREATE FUNCTION INSERT_ENTRENADOR()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  NEW.id_entrenador INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'INSERT', 'Entrenador', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE INDEX ON entrenador(id_entrenador)
+
+
+CREATE TRIGGER TRIGGER_INSERT_ENTRENADOR
+BEFORE INSERT
+ON entrenador
+FOR EACH ROW
+    EXECUTE PROCEDURE INSERT_ENTRENADOR();
+
+--- delete entrenador ---
+CREATE FUNCTION DELETE_ENTRENADOR()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  OLD.id_entrenador INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'DELETE', 'Entrenador', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_DELETE_ENTRENADOR
+BEFORE DELETE
+ON entrenador
+FOR EACH ROW
+    EXECUTE PROCEDURE DELETE_ENTRENADOR();
+
+--- update entrenador ---
+CREATE FUNCTION UPDATE_ENTRENADOR()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  OLD.id_entrenador INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'UPDATE', 'Entrenador', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_UPDATE_ENTRENADOR
+BEFORE UPDATE
+ON entrenador
+FOR EACH ROW
+    EXECUTE PROCEDURE UPDATE_ENTRENADOR();
+
+--- insert usuario ---
+CREATE FUNCTION INSERT_USUARIO()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  NEW.id_usuario INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'INSERT', 'Usuario', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_INSERT_USUARIO
+BEFORE INSERT
+ON usuario
+FOR EACH ROW
+    EXECUTE PROCEDURE INSERT_USUARIO();
+
+--- delete usuario ---
+CREATE FUNCTION DELETE_USUARIO()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  OLD.id_usuario INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'DELETE', 'Usuario', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_DELETE_USUARIO
+BEFORE DELETE
+ON usuario
+FOR EACH ROW
+    EXECUTE PROCEDURE DELETE_USUARIO();
+
+--- update usuario ---
+CREATE FUNCTION UPDATE_USUARIO()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  OLD.id_usuario INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'UPDATE', 'Usuario', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_UPDATE_USUARIO
+BEFORE UPDATE
+ON usuario
+FOR EACH ROW
+    EXECUTE PROCEDURE UPDATE_USUARIO();
+
+--- insert sesion ---
+CREATE FUNCTION INSERT_SESION()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  NEW.id_sesion INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'INSERT', 'Sesion', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_INSERT_SESION
+BEFORE INSERT
+ON sesion
+FOR EACH ROW
+    EXECUTE PROCEDURE INSERT_SESION();
+
+--- delete sesion ---
+CREATE FUNCTION DELETE_SESION()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  OLD.id_sesion INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'DELETE', 'Sesion', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_DELETE_SESION
+BEFORE DELETE
+ON sesion
+FOR EACH ROW
+    EXECUTE PROCEDURE DELETE_SESION();
+
+--- update usuario ---
+CREATE FUNCTION UPDATE_SESION()
+RETURNS TRIGGER AS $$
+DECLARE
+    codigo_transaccion INT;
+    id_objeto   INT;
+BEGIN
+
+    SELECT      COUNT(*) + 1 INTO codigo_transaccion
+    FROM        bitacora;
+
+    SELECT  OLD.id_sesion INTO id_objeto;
+
+    INSERT INTO bitacora(idTransaccion, accion, tabla, fecha, idObjeto)
+    VALUES (codigo_transaccion, 'UPDATE', 'Sesion', CURRENT_DATE, id_objeto);
+
+    RETURN NEW;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE TRIGGER TRIGGER_UPDATE_SESION
+BEFORE UPDATE
+ON sesion
+FOR EACH ROW
+    EXECUTE PROCEDURE UPDATE_SESION();
+

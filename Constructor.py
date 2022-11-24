@@ -13,7 +13,7 @@ class Constructor:
     def __init__(self):
         self.entrenador_zero = Instructor(0, "Nombre", "contrato", "estadoCuenta", "metodoPago")
         self.sesion_zero = Sesion("", "", "", "", "", 0)
-        self.usuario_zero = Persona("", "", "", "", "", "", plan= "ADMIN 3", contrasena="1", pago="", id="1")
+        self.usuario_zero = Persona("", "", "", "", "", "", plan= "ADMIN 1", contrasena="1", pago="", id="1")
         self.usuario_uno = Persona("", "", "", "", "", "", "", contrasena="123", pago="", id="123")
         self.usuario_zero.setAdminStatus(True)
         self.sesiones = [self.sesion_zero]

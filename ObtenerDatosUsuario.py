@@ -311,7 +311,7 @@ class ObtenerDatosUsuario():
                 horario = str(row[0])
                 fecha = str(row[1])
                 total = str(row[2])
-                print("Horario: "+ horario + "  Fecha:" + fecha + "  Total: "+ total)
+                print("Horario: " + horario + "  Fecha:" + fecha + "  Total: "+ total)
 
         except Exception as e:
             print(e)
