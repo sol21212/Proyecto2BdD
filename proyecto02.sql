@@ -863,7 +863,6 @@ CREATE VIEW TOP10_ENT_X_DIASEMANA AS
 CREATE VIEW TOP5_MODFICADORES AS
     SELECT bitacora.accion, bitacora.fecha, COUNT(bitacora.accion)
     FROM bitacora
-    WHERE bitacora.accion = 'modificacion'
     GROUP BY bitacora.accion, bitacora.fecha
     ORDER BY bitacora.accion DESC
 
