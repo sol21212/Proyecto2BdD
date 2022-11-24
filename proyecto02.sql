@@ -867,12 +867,12 @@ CREATE VIEW TOP5_MODFICADORES AS
     GROUP BY bitacora.accion, bitacora.fecha
     ORDER BY bitacora.accion DESC
 
-CREATE VIEW TOP5_FECHAS AS
-    SELECT iwatch_sesiones.hora, iwatch_sesiones.fecha, COUNT(iwatch_sesiones.id_usuario)
-    FROM iwatch_sesiones
-    WHERE iwatch_sesiones.fecha = '2022/04/23' 
-    GROUP BY iwatch_sesiones.hora, iwatch_sesiones.fecha
-    ORDER BY iwatch_sesiones.hora DESC
+CREATE VIEW TOP20_INACTIVOS AS
+    SELECT usuario.estado_cuenta, usuario.nombre, COUNT(usuario.estado_cuenta)
+    FROM usuario
+    WHERE usuario.estado_cuenta = 'Inactiva' 
+    GROUP BY usuario.estado_cuenta, usuario.nombre
+    ORDER BY COUNT(usuario.estado_cuenta) DESC
     LIMIT 20
     
 -- Ejemplos de ejecucion de las vistas 
@@ -891,3 +891,5 @@ FROM TOP5_MODFICADORES
 WHERE fecha = '2022/04/23'
 LIMIT 5
 
+SELECT *
+FROM TOP20_INACTIVOS
